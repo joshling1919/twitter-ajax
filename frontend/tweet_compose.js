@@ -52,7 +52,7 @@ class TweetCompose {
   }
 
   addMentionedUser(){
-    $("a.add-mentioned-user").on("click", event => {
+    $("div.selector").on("click", "a.add-mentioned-user", event => {
       let $scriptTag = this.$el.find('script');
       $('.selector').append($(`${$scriptTag.html()}`));
       $("select").on("change", e => {
@@ -66,15 +66,8 @@ class TweetCompose {
   }
 
   removeMentionedUser(){
-    $("a.remove-mentioned-user").on("click", event => {
-      // if click on remove, nothing happens. doesn't enter this function
-      $("select").on("change", e => {
-        let val = $("select option:selected").text();
-        let $val = $(`<li>${val}\
-          <a href="javascript:void(0)" class="remove-mentioned-user">Remove</a>\
-          </li>`);
-        $(".mentioned-users").find("ul").append($val);
-      });
+    $("div.mentioned-users").on("click", "a.remove-mentioned-user", event => {
+      event.currentTarget.parentNode.remove();
     });
   }
 }
